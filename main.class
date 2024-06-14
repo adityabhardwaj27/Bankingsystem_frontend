@@ -1,0 +1,78 @@
+package accountbalancemanager;
+
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
+public class mainM{
+
+ public static void main(String[] args) {
+ Scanner sc=new Scanner(System.in);
+ 
+ balancesystem customerBalancesystem = new balancesystem(null, 0, null, null, null);
+ 
+ int i=0;
+ 
+ System.out.println("enter account name:");
+ String Name=sc.nextLine();
+ customerBalancesystem.setName(Name);
+ System.out.println("enter account number:");
+ String number=sc.nextLine();
+ customerBalancesystem.setNumber(number);
+ System.out.println("enter phone number:");
+ String phoneNumber=sc.nextLine();
+ customerBalancesystem.setPhoneNumber(phoneNumber);
+ System.out.println("enter email adress");
+ String email=sc.nextLine();
+ customerBalancesystem.setEmail(email);
+ System.out.println("enter account balance");
+ boolean wenttocatch;
+ Double Balance = (double) 0;
+ do{
+ try {
+ wenttocatch = false;
+ Balance= sc.nextDouble(); // sc is an object of scanner 
+class
+ } catch (InputMismatchException e) {
+ sc.next();
+ wenttocatch = true;
+ System.out.println("invalid balance");
+ System.out.println("enter valid balance");
+ }
+ }while(wenttocatch==true);
+ customerBalancesystem.setBalance(Balance);
+ while(i==0)
+ {
+ int choice=0;
+ System.out.println("Enter 1 to withdraw and 2 to deposit");
+ choice=sc.nextInt();
+ switch(choice)
+ {
+ case 1:
+ System.out.println("Enter the amount of money you want to withdraw: ");
+ double amountToWithdraw=sc.nextDouble();
+ 
+customerBalancesystem.WithDrawMoney(amountToWithdraw);
+ break;
+ case 2:
+ System.out.println("Enter the amount of money you want to deposit: ");
+ double amount=sc.nextDouble();
+ customerBalancesystem.DepositMoney(amount);
+ break;
+ default:
+ System.out.println("incorrect choice");break;
+ 
+ }
+ 
+ System.out.println("do you wish to continue ,enter 0 to continue else enter 1");
+ i=sc.nextInt();
+ 
+ }
+ System.out.println("Name: "+customerBalancesystem.getName());
+ System.out.println("Balance: "+customerBalancesystem.getBalance());
+ System.out.println("Phone Number"+customerBalancesystem.getPhoneNumber());
+ System.out.println("email address: "+customerBalancesystem.getEmail());
+ System.out.println("Account Number: "+customerBalancesystem.getNumber());
+}
+}
